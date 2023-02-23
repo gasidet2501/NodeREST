@@ -19,12 +19,12 @@ db.run(`CREATE TABLE IF NOT EXISTS books (
 
 // route to get all books
 app.get('/books', (req, res) => {
-  db.all('SELECT * FROM books', (err, rows) => {
+  db.all('SELECT * FROM books', (err, rows) => { //db.all = ส่งข้อมูลมามากกว่า 1
      if (err) {
         res.status(500).send(err);
      }
     else {
-      res.json(rows);
+      res.json(rows); //format ตัว rows ให้เป็น json แล้วส่งข้อมูลให้มาแสดง
     }
    });
  });
@@ -54,7 +54,7 @@ app.post('/books', (req, res) => {
         res. status (500).send(err);
     }
     else {
-        book.id = this.lastID;
+        book.id = this.lastID; //lastid = ไอดีตัวถัดไปที่ยังว่างอยู่
         res. send (book);
     }
     });
@@ -62,7 +62,7 @@ app.post('/books', (req, res) => {
 // route to update a book
 app.put('/books/:id', (req, res) => {
     const book = req.body;
-    db. run( 'UPDATE books SET title = 7, author = ? WHERE id = ?', book.title, book.author, req.params.id, function(err) {
+    db.run('UPDATE books SET title = ?, author = ? WHERE id = ?', book.title, book.author, req.params.id, function(err) {
     if (err) {
         res.status(500).send(err);
     }
