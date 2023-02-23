@@ -58,7 +58,7 @@ app.post('/books', (req, res) => {
         res. send (book);
     }
     });
-})
+});
 // route to update a book
 app.put('/books/:id', (req, res) => {
     const book = req.body;
