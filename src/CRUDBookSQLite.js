@@ -5,7 +5,7 @@
 // Test with Postman
 const express = require('express');
 const sqlite3 = require('sqlite3');
-const app = express();
+const app = express(); //สร้างแอพ
 // connect to database
 const db = new sqlite3.Database('./Database/Book.sqlite');
 // parse incoming requests
