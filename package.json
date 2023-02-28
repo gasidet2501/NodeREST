@@ -21,7 +21,7 @@
   "homepage": "https://github.com/gasidet2501/NodeREST#readme",
   "devDependencies": {
     "nodemon": "^2.0.20",
-    "prettier": "^2.8.3"
+    "prettier": "^2.8.4"
   },
   "dependencies": {
     "dotenv": "^16.0.3",
