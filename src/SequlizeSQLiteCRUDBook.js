@@ -103,6 +103,101 @@ app.delete('/books/:id', (req, res) => {
     });
 });
 
+////////////////////////////////////
+
+const Book1 = sequelize.define('v2', {
+    id: {
+        type: Sequelize.INTEGER,
+        autoIncrement: true,
+        primaryKey:true
+    },
+    title: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    author: {
+        type: Sequelize.STRING,
+        allowNull: false
+    }
+});
+
+
+app.get('/books1', (req, res) => {
+    Book1.findAll().then(books => {
+        res.json(books);
+    }).catch(err =>{
+        res.status(500).send(err);
+    });
+});
+
+//
+app.get('/books1/:id', (req, res) => {
+    Book1.findByPk(req.params.id).then(book => {
+        if(!book) {
+            res.status(404).send('Book not found');
+        } else {
+            res.json(book);
+        }
+    }).catch(err => {
+        res.status(500).send(err);
+    });
+});
+
+//
+app.post('/books1',(req,res) => {
+    Book1.create(req.body).then(book => {
+        res.send(book);
+    }).catch(err => {
+        res.status(500).send(err);
+    });
+});
+
+//
+app.put('/Books1/:id', (req,res) => {
+    Book1.findByPk(req.params.id).then(book => {
+        if (!book) {
+            res.status(404).send('Book not found');
+        }else {
+            book.update(req.body).then(() => {
+                res.send(book);
+            }).catch(err => {
+                res.status(500).send(err);
+            });
+        }
+    }).catch(err => {
+        res.status(500).send(err);
+    });
+});
+
+//
+app.delete('/books1/:id', (req, res) => {
+    Book1.findByPk(req.params.id).then(book => {
+        if(!book) {
+            res.status(404).send('Book not found');
+        }else {
+            book.destroy().then(() => {
+                res.send({});
+            }).catch(err => {
+                res.status(500).send(err);
+            });
+        }
+    }).catch(err => {
+        res.status(500).send(err);
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
 //
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Listening on port ${port}...`));
