@@ -71,7 +71,7 @@ app.post('/books',(req,res) => {
 
 //
 app.put('/Books/:id', (req,res) => {
-    Book.findByPK(req.params.id).then(book => {
+    Book.findByPk(req.params.id).then(book => {
         if (!book) {
             res.status(404).send('Book not found');
         }else {
